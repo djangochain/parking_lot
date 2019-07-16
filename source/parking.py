@@ -59,6 +59,10 @@ class Parking(object):
         if not self.__is_parking_lot_created:
             return
 
+        if self.__is_car_available_in_parking(registration_no):
+            print("Car with registration number %s is already in the parking" % registration_no)
+            return
+
         if self._available_slots:
             self._available_slots[0].park_car_in_slot(Car.create(registration_no, colour))
             print("Allocated slot number: %s" % self._available_slots[0].slot_no)
@@ -108,6 +112,89 @@ class Parking(object):
         for parking_slot in self._parking_slots.values():
             if not parking_slot.is_available:
                 print("%s\t%s\t%s" % (parking_slot.slot_no, parking_slot.car.registration_no, parking_slot.car.colour))
+
+    def empty_slots(self):
+        """
+           Method to find out the empty slots
+
+           Parameters:
+
+           Returns:
+               String : CSV string of the empty slots if available else Sorry, parking lot is full.
+        """
+
+        if not self.__is_parking_lot_created:
+            return
+
+        slot_nos = [str(pslot.slot_no) for pslot in self._available_slots]
+
+        if slot_nos:
+            print(", ".join(slot_nos))
+        else:
+            print("Sorry, parking lot is full")
+
+    def registration_numbers_for_cars_with_colour(self, colour):
+        """
+           Method to find registration number for cars with given colour in parking.
+
+           Parameters:
+               colour (string) : The colour of the car to be searched.
+
+           Returns:
+               String : CSV string of registration numbers with a given color if available else 'Not found'.
+        """
+        if not self.__is_parking_lot_created:
+            return
+
+        registration_nos = [pslot.car.registration_no for pslot in self._parking_slots.values() if
+                            not pslot.is_available and pslot.car.colour == colour]
+
+        if registration_nos:
+            print(", ".join(registration_nos))
+        else:
+            print("Not found")
+
+    def slot_numbers_for_cars_with_colour(self, colour):
+        """
+            Method to find slot numbers for cars with given colour in parking.
+
+            Parameters:
+                colour (string) : The colour of the car to be searched.
+
+            Returns:
+                String : CSV string of slot numbers with a given color if available else 'Not found'.
+        """
+        if not self.__is_parking_lot_created:
+            return
+
+        slot_nos = [str(pslot.slot_no) for pslot in self._parking_slots.values() if
+                    not pslot.is_available and pslot.car.colour == colour]
+
+        if slot_nos:
+            print(", ".join(slot_nos))
+        else:
+            print("Not found")
+
+    def slot_number_for_registration_number(self, registration_no):
+        """
+            Method to find slot numbers for a car with given registration number.
+
+            Parameters:
+                registration_no (string) : The registration number of the car to be searched.
+
+            Returns:
+                String : Slot number of a car with given registration number if available else 'Not found'.
+        """
+        if not self.__is_parking_lot_created:
+            return
+
+        slot_nos = [str(pslot.slot_no) for pslot in self._parking_slots.values() if
+                    not pslot.is_available and pslot.car.registration_no == registration_no]
+
+        if slot_nos:
+            print(",".join(slot_nos))
+        else:
+            print("Not found")
 
     def __set_available_slots(self):
         """
