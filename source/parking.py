@@ -235,3 +235,16 @@ class Parking(object):
         """
         return True if list(filter(lambda x: x.car and x.car.registration_no == registration_no,
                                    self._parking_slots.values())) else False
+
+    @staticmethod
+    def exit():
+        """
+            Method to exit the program.
+
+            Parameters:
+
+            Returns:
+                None
+        """
+        print("Happy Parking see you soon")
+        sys.exit(1)
