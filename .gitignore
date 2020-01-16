@@ -12,7 +12,10 @@ build/
 develop-eggs/
 dist/
 downloads/
+<<<<<<< HEAD
 .idea/
+=======
+>>>>>>> c116516dabbd344107c2c838d1618cc8cbc78e29
 eggs/
 .eggs/
 lib/
@@ -48,6 +51,10 @@ htmlcov/
 nosetests.xml
 coverage.xml
 *.cover
+<<<<<<< HEAD
+=======
+*.py,cover
+>>>>>>> c116516dabbd344107c2c838d1618cc8cbc78e29
 .hypothesis/
 .pytest_cache/
 
@@ -91,8 +98,17 @@ ipython_config.py
 #   install all needed dependencies.
 #Pipfile.lock
 
+<<<<<<< HEAD
 # celery beat schedule file
 celerybeat-schedule
+=======
+# PEP 582; used by e.g. github.com/David-OConnor/pyflow
+__pypackages__/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+>>>>>>> c116516dabbd344107c2c838d1618cc8cbc78e29
 
 # SageMath parsed files
 *.sage.py
@@ -123,4 +139,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+<<<<<<< HEAD
 
+=======
+>>>>>>> c116516dabbd344107c2c838d1618cc8cbc78e29
